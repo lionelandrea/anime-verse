@@ -1,0 +1,140 @@
+/* =========================
+   ANIME INPUTS (Search + Forms)
+   ========================= */
+
+/* wrapper générique */
+.animeField {
+  display: grid;
+  gap: 8px;
+}
+
+.animeLabel {
+  font-weight: 900;
+  letter-spacing: 0.3px;
+  opacity: 0.92;
+}
+
+/* input néon */
+.animeInput {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e7eaf3;
+  outline: none;
+
+  box-shadow:
+    0 0 0 0 rgba(167, 139, 250, 0.0),
+    0 10px 24px rgba(0, 0, 0, 0.25);
+
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.12s ease;
+}
+
+.animeInput::placeholder {
+  color: rgba(231, 234, 243, 0.55);
+}
+
+.animeInput:focus {
+  border-color: rgba(34, 211, 238, 0.55);
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 238, 0.18),
+    0 0 22px rgba(167, 139, 250, 0.22),
+    0 14px 30px rgba(0, 0, 0, 0.32);
+  transform: translateY(-1px);
+}
+
+/* champ avec icône */
+.animeInputRow {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+}
+
+.animeIcon {
+  display: grid;
+  place-items: center;
+  height: 46px;
+  font-size: 18px;
+  opacity: 0.9;
+  border-right: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.16),
+    rgba(34, 211, 238, 0.10),
+    rgba(251, 113, 133, 0.10)
+  );
+}
+
+.animeInputRow input {
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  padding: 12px 14px;
+  height: 46px;
+}
+
+/* messages */
+.animeHelp {
+  font-size: 12px;
+  color: rgba(231, 234, 243, 0.72);
+}
+
+.animeError {
+  font-size: 12px;
+  color: #fb7185;
+  font-weight: 800;
+}
+
+/* carte formulaire (inscription) */
+.formCard {
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: linear-gradient(
+    135deg,
+    rgba(167, 139, 250, 0.10),
+    rgba(34, 211, 238, 0.08),
+    rgba(251, 113, 133, 0.06)
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.formCard::before {
+  content: "";
+  position: absolute;
+  inset: -80px;
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(167, 139, 250, 0.00),
+    rgba(167, 139, 250, 0.18),
+    rgba(34, 211, 238, 0.16),
+    rgba(251, 113, 133, 0.14),
+    rgba(167, 139, 250, 0.00)
+  );
+  filter: blur(26px);
+  opacity: 0.55;
+  animation: spin 7.5s linear infinite;
+  pointer-events: none;
+}
+
+.formCard > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* bouton style anime */
+.animeBtn {
+  width: 100%;
+  justify-content: center;
+}
+
+.animeBtn:disabled {
+  opacity: 0.55;
+}
