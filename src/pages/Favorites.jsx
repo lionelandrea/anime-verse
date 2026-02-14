@@ -30,7 +30,7 @@ export default function Favorites() {
   return (
     <section>
       <h1 className="heroTitle">
-        💜 <span className="gradientTitle">Mes Favoris</span>
+         <span className="gradientTitle">Mes Favoris</span>
       </h1>
 
       {favorites.length === 0 ? (
@@ -44,7 +44,7 @@ export default function Favorites() {
           <div className="grid" style={{ marginTop: 12 }}>
             {favorites.map((a) => (
               <div key={a.id} style={{ position: "relative" }}>
-                {/* badge Vu / Pas vu */}
+                
                 <div
                   className="pill"
                   style={{

@@ -87,7 +87,7 @@ export default function Discover() {
       <div className="heroBox" style={{ marginBottom: 14 }}>
         <div className="heroLeft">
           <h1 className="heroTitle">
-            🔎 <span className="gradientTitle">Découvrir</span>
+             <span className="gradientTitle">Découvrir</span>
           </h1>
           <p className="heroText">
             Recherche un animé et clique sur une carte pour voir les détails (studio,
