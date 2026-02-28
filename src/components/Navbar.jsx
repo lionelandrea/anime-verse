@@ -1,15 +1,31 @@
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
-  return (
-    <header className="nav">
-      <div className="nav__brand">Anime-Verse</div>
+  const linkClass = ({ isActive }) =>
+    "nav__link" + (isActive ? " nav__link--active" : "");
 
-      <nav className="nav__links">
-        <NavLink to="/" end>Accueil</NavLink>
-        <NavLink to="/discover">Découvrir</NavLink>
-        <NavLink to="/favorites">Favoris</NavLink>
-        <NavLink to="/signup">Inscription</NavLink>
+  return (
+    <header className="topbar">
+      <nav className="nav">
+        <NavLink to="/" className="brand">
+          <span className="brand__dot" />
+          <span className="brand__text">Anime-Verse</span>
+        </NavLink>
+
+        <div className="nav__links">
+          <NavLink to="/" className={linkClass}>
+            Accueil
+          </NavLink>
+          <NavLink to="/discover" className={linkClass}>
+            Découvrir
+          </NavLink>
+          <NavLink to="/favorites" className={linkClass}>
+            Favoris
+          </NavLink>
+          <NavLink to="/signup" className={linkClass}>
+            Inscription
+          </NavLink>
+        </div>
       </nav>
     </header>
   );

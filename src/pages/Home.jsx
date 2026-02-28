@@ -25,7 +25,6 @@ export default function Home() {
         setLoading(true);
         setError(false);
 
-        
         const res = await fetch("https://api.jikan.moe/v4/seasons/now?limit=12");
         const json = await res.json();
 
@@ -36,7 +35,9 @@ export default function Home() {
           score: a.score,
           type: a.type,
           episodes: a.episodes,
-          releaseDate: a.aired?.from ? new Date(a.aired.from).toLocaleDateString() : "—",
+          releaseDate: a.aired?.from
+            ? new Date(a.aired.from).toLocaleDateString()
+            : "—",
           studio: a.studios?.[0]?.name ?? "—",
           synopsis: a.synopsis,
           genres: (a.genres ?? []).map((g) => g.name),
@@ -67,43 +68,74 @@ export default function Home() {
   };
 
   return (
-    <section>
-      <div className="heroBox">
-        <div className="heroLeft">
-          <h1 className="heroTitle">
-            Bienvenue dans <span className="gradientTitle">Anime-Verse</span>
-          </h1>
-          <p className="heroText">
-            Découvre des animés, sauvegarde tes favoris, et explore les infos :
-            dates de sortie, studio, genres, score, synopsis…
-          </p>
+    <section className="home">
+      <header className="hero">
+        <div className="hero__glass">
+          <div className="hero__top">
+            <div>
+              <p className="hero__kicker">Saison en cours • Recommandations</p>
+              <h1 className="hero__title">
+                Bienvenue dans <span className="hero__titleAccent">Anime-Verse</span>
+              </h1>
+              <p className="hero__subtitle">
+                Découvre des animés, sauvegarde tes favoris, et explore les infos :
+                dates de sortie, studio, genres, score, synopsis...
+              </p>
 
-          <div className="quickActions">
-            <NavLink className="cta" to="/discover"> Découvrir</NavLink>
-            <NavLink className="cta cta2" to="/favorites"> Favoris</NavLink>
-            <NavLink className="cta cta3" to="/signup"> Inscription</NavLink>
+              <div className="hero__actions">
+                <NavLink className="btn btn--primary" to="/discover">
+                  Découvrir
+                </NavLink>
+                <NavLink className="btn btn--ghost" to="/favorites">
+                  Favoris
+                </NavLink>
+                <NavLink className="btn btn--ghost" to="/signup">
+                  Inscription
+                </NavLink>
+              </div>
+            </div>
+
+            <div className="hero__stats">
+              <div className="stat stat--glow">
+                <div className="stat__num">{favorites.length}</div>
+                <div className="stat__label">Favoris</div>
+              </div>
+
+              <div className="stat">
+                <div className="stat__num">{animes.length}</div>
+                <div className="stat__label">Animés du moment</div>
+              </div>
+
+              <div className="stat">
+                <div className="stat__num">✨</div>
+                <div className="stat__label">Explore</div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hero__hint">
+            Clique sur une carte pour voir les détails.
           </div>
         </div>
+      </header>
 
-        <div className="heroRight">
-          <div className="statsCard">
-            <div>
-              <div className="statBig">{favorites.length}</div>
-              <div className="muted">Favoris</div>
-            </div>
-            <div>
-              <div className="statBig">{animes.length}</div>
-              <div className="muted">Animés du moment</div>
-            </div>
-          </div>
-          <div className="sparkle" />
-        </div>
+      <div className="sectionHead">
+        <h2 className="sectionTitle">Animés de la saison</h2>
+        <NavLink className="sectionLink" to="/discover">
+          Voir plus →
+        </NavLink>
       </div>
 
-      <h2 className="sectionTitle"> Animés de la saison (avec infos)</h2>
-
       {loading && <Loading text="Chargement des animés…" />}
-      {error && <p className="error">Impossible de charger les animés.</p>}
+
+      {error && (
+        <div className="errorBox">
+          <p className="errorTitle">Impossible de charger les animés.</p>
+          <p className="errorText">
+            Réessaie dans quelques secondes (l’API peut être temporairement limitée).
+          </p>
+        </div>
+      )}
 
       {!loading && !error && (
         <div className="grid">

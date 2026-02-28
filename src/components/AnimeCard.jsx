@@ -6,25 +6,25 @@ export default function AnimeCard({
   onOpenDetails,
 }) {
   return (
-    <article className="card neon" onClick={() => onOpenDetails(anime.id)}>
+    <article className="card" onClick={() => onOpenDetails(anime.id)}>
       <div className="card__imgWrap">
         <img className="card__img" src={anime.image} alt={anime.title} />
-        <div className="card__corner">
-          <span className="pill">⭐ {anime.score ?? "—"}</span>
-        </div>
+        <span className="pill">⭐ {anime.score ?? "—"}</span>
       </div>
 
       <div className="card__body">
         <h3 className="card__title">{anime.title}</h3>
 
-        <div className="metaLine">
-          <span className="miniTag"> {anime.releaseDate ?? "—"}</span>
-          <span className="miniTag"> {anime.studio ?? "—"}</span>
+        <div className="meta">
+          <span>{anime.releaseDate ?? "—"}</span>
+          <span>•</span>
+          <span>{anime.studio ?? "—"}</span>
         </div>
 
-        <div className="metaLine">
-          <span className="miniTag"> {anime.type ?? "—"}</span>
-          <span className="miniTag"> {anime.episodes ?? "—"} ep</span>
+        <div className="meta">
+          <span>{anime.type ?? "—"}</span>
+          <span>•</span>
+          <span>{anime.episodes ?? "—"} ep</span>
         </div>
 
         <p className="card__desc">
@@ -39,7 +39,9 @@ export default function AnimeCard({
           {!isFavorite ? (
             <button onClick={onAdd}>+ Favori</button>
           ) : (
-            <button className="danger" onClick={onRemove}>Retirer</button>
+            <button className="danger" onClick={onRemove}>
+              Retirer
+            </button>
           )}
           <button className="ghost" onClick={() => onOpenDetails(anime.id)}>
             Détails
