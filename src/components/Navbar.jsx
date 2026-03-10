@@ -7,25 +7,37 @@ export default function Navbar() {
   return (
     <header className="topbar">
       <nav className="nav">
+
         <NavLink to="/" className="brand">
-          <span className="brand__dot" />
+
+          <img
+            src="/logo/Anime-verce.png"
+            alt="Anime-Verse"
+            className="brand__logo"
+          />
+
           <span className="brand__text">Anime-Verse</span>
+
         </NavLink>
 
         <div className="nav__links">
           <NavLink to="/" className={linkClass}>
             Accueil
           </NavLink>
+
           <NavLink to="/discover" className={linkClass}>
             Découvrir
           </NavLink>
+
           <NavLink to="/favorites" className={linkClass}>
             Favoris
           </NavLink>
+
           <NavLink to="/signup" className={linkClass}>
             Inscription
           </NavLink>
         </div>
+
       </nav>
     </header>
   );

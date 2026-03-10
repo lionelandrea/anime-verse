@@ -247,9 +247,7 @@ input:focus{
   box-shadow:0 0 0 4px rgba(34,211,238,.12);
 }
 
-/* =========================
-   PAGE DETAILS ANIME
-========================= */
+
 
 .detailsPage{
   position:fixed;
@@ -411,6 +409,22 @@ input:focus{
 
 .muted{
   color:var(--muted);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.brand__text {
+  font-weight: 800;
+  letter-spacing: .3px;
 }
 
 @media(max-width:900px){
