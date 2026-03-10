@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import AnimeCard from "../components/AnimeCard";
-import AnimeModal from "../components/AnimeModal";
+import AnimeModal from "../components/AnimeDetailCard";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState(() => {

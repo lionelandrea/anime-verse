@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 
-export default function AnimeModal({ animeId, onClose }) {
+export default function AnimeDetailCard({ animeId, onClose }) {
   const [details, setDetails] = useState(null);
   const [staff, setStaff] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -25,7 +25,6 @@ export default function AnimeModal({ animeId, onClose }) {
 
         setDetails(dJson?.data ?? null);
 
-        // staff = liste de personnes avec leurs positions (Director, etc.)
         const staffShort = (sJson?.data ?? [])
           .slice(0, 8)
           .map((p) => ({
@@ -48,30 +47,39 @@ export default function AnimeModal({ animeId, onClose }) {
   if (!animeId) return null;
 
   return (
-    <div className="modalOverlay" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <button className="iconBtn" onClick={onClose} aria-label="Fermer">
-          ✕
-        </button>
+    <section className="detailCardSection">
+      <div className="detailCard">
+        <div className="detailCard__top">
+          <h2 className="gradientTitle">Détails de l’animé</h2>
+          <button className="ghost" onClick={onClose}>
+            Fermer
+          </button>
+        </div>
 
         {loading && <Loading text="Chargement des détails..." />}
         {error && <p className="error">Impossible de charger les détails.</p>}
 
         {!loading && !error && details && (
-          <div className="modalGrid">
-            <img
-              className="modalImg"
-              src={details.images?.jpg?.large_image_url}
-              alt={details.title}
-            />
+          <div className="detailCard__grid">
+            <div className="detailCard__imageWrap">
+              <img
+                className="detailCard__image"
+                src={details.images?.jpg?.large_image_url}
+                alt={details.title}
+              />
+            </div>
 
-            <div className="modalContent">
-              <h2 className="gradientTitle">{details.title}</h2>
+            <div className="detailCard__content">
+              <h3 className="detailCard__title">{details.title}</h3>
 
               <div className="badges">
                 {details.type && <span className="badge">{details.type}</span>}
-                {details.status && <span className="badge badge2">{details.status}</span>}
-                {details.rating && <span className="badge badge3">{details.rating}</span>}
+                {details.status && (
+                  <span className="badge badge2">{details.status}</span>
+                )}
+                {details.rating && (
+                  <span className="badge badge3">{details.rating}</span>
+                )}
               </div>
 
               <div className="infoGrid">
@@ -86,16 +94,12 @@ export default function AnimeModal({ animeId, onClose }) {
               </div>
 
               {details.synopsis && (
-                <p className="synopsis">
-                  {details.synopsis.length > 380
-                    ? details.synopsis.slice(0, 380) + "…"
-                    : details.synopsis}
-                </p>
+                <p className="synopsis">{details.synopsis}</p>
               )}
 
               {staff.length > 0 && (
                 <>
-                  <h3 className="sectionTitle">Staff clé (≈ “auteur”)</h3>
+                  <h4 className="sectionTitle">Staff clé</h4>
                   <ul className="staffList">
                     {staff.map((s, i) => (
                       <li key={i}>
@@ -110,7 +114,7 @@ export default function AnimeModal({ animeId, onClose }) {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Discover from "./pages/Discover";
 import Favorites from "./pages/Favorites";
 import Signup from "./pages/Signup";
+import AnimeDetailsPage from "./pages/AnimeDetailsPage";
 
 export default function App() {
   return (
@@ -16,6 +17,9 @@ export default function App() {
           <Route path="/discover" element={<Discover />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/signup" element={<Signup />} />
+
+          
+          <Route path="/anime/:id/:slug" element={<AnimeDetailsPage />} />
         </Routes>
       </main>
     </div>

@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
 import Loading from "../components/Loading";
 import AnimeCard from "../components/AnimeCard";
-import AnimeModal from "../components/AnimeModal";
+import AnimeModal from "../components/AnimeDetailCard";
 
 export default function Home() {
   const [animes, setAnimes] = useState([]);
@@ -107,7 +107,7 @@ export default function Home() {
               </div>
 
               <div className="stat">
-                <div className="stat__num">✨</div>
+                <div className="stat__num">decouvre se monde incroyable</div>
                 <div className="stat__label">Explore</div>
               </div>
             </div>

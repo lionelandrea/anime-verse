@@ -1,12 +1,33 @@
+import { useNavigate } from "react-router-dom";
+
 export default function AnimeCard({
   anime,
   onAdd,
   onRemove,
   isFavorite,
-  onOpenDetails,
 }) {
+  const navigate = useNavigate();
+
+  const animeId = anime.id ?? anime.mal_id;
+
+  const makeSlug = (text) => {
+    if (!text) return "anime";
+
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  };
+
+  const openDetails = () => {
+    if (!animeId) return;
+    navigate(`/anime/${animeId}/${makeSlug(anime.title)}`);
+  };
+
   return (
-    <article className="card" onClick={() => onOpenDetails(anime.id)}>
+    <article className="card" onClick={openDetails}>
       <div className="card__imgWrap">
         <img className="card__img" src={anime.image} alt={anime.title} />
         <span className="pill">⭐ {anime.score ?? "—"}</span>
@@ -43,7 +64,8 @@ export default function AnimeCard({
               Retirer
             </button>
           )}
-          <button className="ghost" onClick={() => onOpenDetails(anime.id)}>
+
+          <button className="ghost" onClick={openDetails}>
             Détails
           </button>
         </div>
